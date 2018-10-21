@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace MedEvolution.Models
         public int? Men_codigoMenu { get; set; }
 
         [Required]
+        [Description("Menú:")]
         [StringLength(15)]
         public string NombreMenu { get; set; }
 

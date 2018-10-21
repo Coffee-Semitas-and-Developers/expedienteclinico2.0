@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
@@ -12,28 +13,31 @@ namespace MedEvolution.Models
     {
         public ConjuntoSignosVitales()
         {
-            Consultas = new HashSet<Consulta>();
         }
 
         [Key]
         public int IdSignos { get; set; }
 
         [Required]
+        [Description("Presión Arterial:")]
         public decimal PresionArterial { get; set; }
 
         [Required]
-        public decimal Teperatura { get; set; }
+        [Description("Temperatura:")]
+        public decimal Temperatura { get; set; }
 
         [Required]
+        [Description("Peso:")]
         public decimal Peso { get; set; }
 
         [Required]
+        [Description("Pulso cardiaco:")]
         public decimal PulsoCardiaco { get; set; }
 
         [Required]
+        [Description("Estatura:")]
         public decimal Estatura { get; set; }
 
-        public virtual ICollection<Consulta> Consultas { get; set; }
     }
 }
     

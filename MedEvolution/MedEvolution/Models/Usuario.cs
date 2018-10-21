@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,8 +15,6 @@ namespace MedEvolution.Models
 
         Usuario()
         {
-            //Roles = new HashSet<Rol>();
-            //Empleados = new HashSet<Empleado>();
         }
 
         [Key]
@@ -24,6 +23,7 @@ namespace MedEvolution.Models
 
         [Required]
         [StringLength(16)]
+        [Description("Contraseña")]
         public string Contrasenia { get; set; }
 
         /*Se utilizara cuando se cree una nueva contraseña
@@ -32,11 +32,8 @@ namespace MedEvolution.Models
         [StringLength(16)]
         public string UltimaContrasenia { get; set; }
 
-       // public virtual ICollection<Rol> Roles { get; set; }
-       // public virtual ICollection<Empleado> Empleados { get; set; }
+        public List<Rol> Rol { get; set; }
 
-        public virtual Rol Rol { get; set; }
-
-        public virtual Empleado Empleado { get; set; }
+        public Empleado Empleado { get; set; }
     }
 }

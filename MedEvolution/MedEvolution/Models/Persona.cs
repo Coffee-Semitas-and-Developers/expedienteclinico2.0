@@ -55,7 +55,7 @@ namespace MedEvolution.Models
         [Required]
         [Description("Fecha de nacimiento:")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "0:dd:MMM:yyyy")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd:MMM:yyyy}")]
         public DateTime FechaNac { get; set; }
 
         [Required]

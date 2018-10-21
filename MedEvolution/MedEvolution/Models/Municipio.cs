@@ -13,7 +13,6 @@ namespace MedEvolution.Models
     {
         public Municipio()
         {
-            //Direcciones = new HashSet<Direccion>();
         }
 
         [Key]
@@ -28,6 +27,6 @@ namespace MedEvolution.Models
         
         public Departamento Departamento { get; set; }
 
-        //public ICollection<Direccion> Direcciones { get; set; }
+    
     }
 }

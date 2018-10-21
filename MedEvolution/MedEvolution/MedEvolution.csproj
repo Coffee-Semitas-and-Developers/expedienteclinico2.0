@@ -156,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ValidacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,13 +170,14 @@
     <Compile Include="Models\Especialidad_Desempeñada.cs" />
     <Compile Include="Models\Estado.cs" />
     <Compile Include="Models\Examen.cs" />
-    <Compile Include="Models\Horaio_De_Atencion.cs" />
+    <Compile Include="Models\Horario_De_Atencion.cs" />
     <Compile Include="Models\MedEvolutionDBContext.cs" />
     <Compile Include="Models\Medicamento.cs" />
     <Compile Include="Models\Medico.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Municipio.cs" />
     <Compile Include="Models\OrdenExamen.cs" />
+    <Compile Include="Models\OrdenExamen_Examen.cs" />
     <Compile Include="Models\Paciente.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Privilegio.cs" />
@@ -261,6 +263,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Hora.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

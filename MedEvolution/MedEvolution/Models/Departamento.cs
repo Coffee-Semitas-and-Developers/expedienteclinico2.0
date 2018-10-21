@@ -13,7 +13,6 @@ namespace MedEvolution.Models
     {
         public Departamento()
         {
-            //Municipios = new HashSet<Municipio>();
         }
 
         [Key]

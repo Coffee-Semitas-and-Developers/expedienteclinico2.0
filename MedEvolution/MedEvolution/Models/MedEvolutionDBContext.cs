@@ -8,6 +8,11 @@ namespace MedEvolution.Models
 {
     public class MedEvolutionDbContext : DbContext
     {
+        public MedEvolutionDbContext()
+        {
+
+        }
+        
         public DbSet<Departamento> Departamento { get; set; }
         public DbSet<Municipio> Municipio { get; set; }
         public DbSet<Direccion> Direccion { get; set; }
@@ -35,51 +40,88 @@ namespace MedEvolution.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
+            modelBuilder.Entity<Cita>()
+                 .HasRequired(e => e.Medico);
+
+            modelBuilder.Entity<Cita>()
+                 .HasRequired(e => e.Paciente);
+
+            modelBuilder.Entity<Cita>()
+                 .HasRequired(e => e.Estado);
+
+            modelBuilder.Entity<Clinica>()
+                 .HasRequired(e => e.Director);
+
+            modelBuilder.Entity<Clinica>()
+                 .HasRequired(e => e.Direccion);
+
             modelBuilder.Entity<Consulta>()
-                .HasMany(e => e.OrdenesExamen)
-                .WithRequired(e => e.Consulta)
-                .WillCascadeOnDelete(false);
+                 .HasRequired(e => e.Signos);
+
+            modelBuilder.Entity<Consulta>()
+                 .HasRequired(e => e.Cita);
+
+            modelBuilder.Entity<Consulta>()
+                 .HasMany(e => e.OrdenesExamen)
+                 .WithOptional()
+                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<OrdenExamen>()
+                 .HasMany(e => e.Examen)
+                 .WithOptional()
+                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Consulta>()
                 .HasMany(e => e.Recetas)
-                .WithRequired(e => e.Consulta)
+                .WithOptional()
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Cita>()
-                .HasRequired(e => e.Medico);
-
-            modelBuilder.Entity<Cita>()
-                .HasRequired(e => e.Paciente);
+            modelBuilder.Entity<Receta>()
+                 .HasRequired(e => e.Medicamento);
 
             modelBuilder.Entity<Empleado>()
-                 .HasRequired(e => e.Persona);
-
-            modelBuilder.Entity<Medico>()
-                .HasRequired(e => e.Empleado);
+                 .HasRequired(e => e.Clinica);
 
             modelBuilder.Entity<Direccion>()
-                .HasRequired(e => e.Municipio);
+               .HasRequired(e => e.Municipio);
 
-            modelBuilder.Entity<Medico>()
-                .HasRequired(e => e.Especialidad_Desempeniada);
-
-            modelBuilder.Entity<Medico>()
-                .HasRequired(e => e.Horarios_De_Atencion);
-
-            modelBuilder.Entity<Consulta>()
-                .HasRequired(e => e.Signos);
-
-            modelBuilder.Entity<Consulta>()
-                .HasRequired(e => e.Cita);
-
-            modelBuilder.Entity<Receta>()
-                .HasRequired(e => e.Medicamento);
-
-            modelBuilder.Entity<Usuario>()
-                .HasRequired(e => e.Rol);
+            modelBuilder.Entity<Municipio>()
+               .HasRequired(e => e.Departamento);
 
             modelBuilder.Entity<Empleado>()
-                .HasRequired(e => e.Clinica);
+                 .HasRequired(e => e.Estado);
+
+            modelBuilder.Entity<Medico>()
+                 .HasRequired(e => e.Especialidad_Desempeniada);
+
+            modelBuilder.Entity<Medico>()
+                 .HasRequired(e => e.Horarios_De_Atencion);
+
+            modelBuilder.Entity<Menu>()
+                 .Property(e => e.Men_codigoMenu)
+                 .IsOptional();
+
+            modelBuilder.Entity<Paciente>()
+                 .HasRequired(e => e.Estado);
+
+            modelBuilder.Entity<Persona>()
+                 .HasRequired(e => e.Direccion);
+
+            modelBuilder.Entity<Rol>()
+                 .HasMany(e => e.Privilegios)
+                 .WithOptional()
+                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Rol>()
+                 .HasMany(e => e.Menus)
+                 .WithOptional()
+                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Usuario>()
+                 .HasMany(e => e.Rol)
+                 .WithOptional()
+                 .WillCascadeOnDelete(false);
+
         }
 
     }

@@ -24,10 +24,9 @@ namespace MedEvolution.Models
         [StringLength(30)]
         public string NombreRol { get; set; }
 
-        public virtual Privilegio Privilegio { get; set; }
+        public List<Privilegio> Privilegios { get; set; }
 
-        public virtual Menu Menu { get; set; }
+        public List<Menu> Menus { get; set; }
 
-        //public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

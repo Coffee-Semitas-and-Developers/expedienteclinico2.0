@@ -11,7 +11,7 @@ namespace MedEvolution.Models
     [Table("Estado")]
     public class Estado
     {
-        Estado()
+        public Estado()
         {
         }
 

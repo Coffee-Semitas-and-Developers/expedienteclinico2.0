@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -17,29 +18,32 @@ namespace MedEvolution.Models
         }
 
         [Key]
+        [Description("Identificador de cita:")]
         public int IdCita { get; set; }
        
         [Required]
         [ScaffoldColumn(false)]
-        [DisplayFormat(DataFormatString = "dd/MMM/yyyy HH:mm:ss")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy 0:HH:mm:ss}")]
         public DateTime FechaCreada { get; set; }
 
 
         [Required(ErrorMessage ="La Fecha no debe ser inferior a la fecha acutal")]
-        [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "dd/MMM/ yyyy")]
+        [Description("Fecha de la cita:")]
+        [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "{0:dd/MMM/ yyyy}")]
         [Remote("FechaParaCita", "Validaciones", ErrorMessage ="La fecha de la cita no puede ser inferior al día de hoy")]
         public DateTime FechaCita { get; set; }
 
         [Required]
         [StringLength(100)]
+        [Description("Causa:")]
         public string Causa { get; set; }
 
         //[Remote("ObteberListadoMedico","FiltrosController")]
-        public virtual Medico Medico { get; set; }
+        public Medico Medico { get; set; }
 
-        public virtual Paciente Paciente { get; set; }
+        public Paciente Paciente { get; set; }
 
-        public virtual Estado Estado { get; set; }
+        public Estado Estado { get; set; }
 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

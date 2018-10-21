@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -10,18 +11,17 @@ namespace MedEvolution.Models
     [Table("EspecialidadDesempeniada")]
     public class Especialidad_Desempeniada
     {
-        Especialidad_Desempeniada()
+        public Especialidad_Desempeniada()
         {
-            //Medicos = new HashSet<Medico>();
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CodigoEspecialidad { get; set; }
 
         [Required]
+        [Description("Nombre de especialidad:")]
         [StringLength(30)]
         public string NombreEspecialidad { get; set; }
-
-        //public virtual ICollection<Medico> Medicos { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -8,41 +9,45 @@ using System.Web;
 namespace MedEvolution.Models
 {
     [Table("Empleado")]
-    public partial class Empleado
+    public class Empleado : Persona
     {
         public Empleado()
         {
-            //FechaContratacion = DateTime.Today;
-            //Medicos = new HashSet<Medico>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Description("Identificador de empleado:")]
         public int IdEmpleado { get; set; }
 
         [Required]
         [StringLength(30)]
+        [Description("Cargo:")]
         public string Cargo { get; set; }
 
         [Required]
-        [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString ="dd/MMM/yyyy")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
+        [Description("Fecha de Contratación:")]
         public DateTime FechaContratacion { get; set; }
 
-
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "dd/MMM/yyyy")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
+        [Description("Fecha de despido:")]
         public DateTime? FechaDespido { get; set; }
 
+        [Required]
+        [Description("Salario:")]
         public double Salario { get; set; }
 
         [Required]
-        public decimal HorasLaborales { get; set; }
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        public DateTime HorasLaborales { get; set; }
 
-        public virtual Persona Persona { get; set; }
+        public Clinica Clinica { get; set; }
 
-        public virtual Clinica Clinica { get; set; }
+        public Estado Estado { get; set; }
 
-        public virtual Estado Estado { get; set; }
-
-        //public virtual ICollection<Medico> Medicos { get; set; }
     }
 }

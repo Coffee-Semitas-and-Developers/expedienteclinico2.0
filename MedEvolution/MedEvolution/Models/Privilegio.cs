@@ -12,7 +12,7 @@ namespace MedEvolution.Models
     {
         /*Aun falta analisis aqui y mejor organizacion*/
 
-        Privilegio()
+        public Privilegio()
         {
         }
 

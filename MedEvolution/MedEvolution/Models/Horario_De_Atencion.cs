@@ -11,7 +11,7 @@ namespace MedEvolution.Models
     [Table("HorarioDeAtencion")]
     public class Horario_De_Atencion
     {
-        Horario_De_Atencion()
+        public Horario_De_Atencion()
         {
 
         }
@@ -24,12 +24,12 @@ namespace MedEvolution.Models
         [Required]
         [Description("Hora de entrada:")]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "0:HH:mm")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         public DateTime HoraInicio { get; set; }
 
         [Required]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "0:HH:mm")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         [Description("Hora Salida:")]
         public DateTime HoraFin { get; set; }
 
@@ -39,7 +39,7 @@ namespace MedEvolution.Models
 
         [Description("Horarios")]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "0:HH:mm")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         public List<DateTime> Horarios { get; set; }
 
         public List<DateTime> CrearHorario(DateTime inicio, DateTime fin)
