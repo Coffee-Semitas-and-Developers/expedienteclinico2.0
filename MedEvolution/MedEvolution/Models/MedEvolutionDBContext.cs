@@ -63,21 +63,13 @@ namespace MedEvolution.Models
 
             modelBuilder.Entity<Consulta>()
                  .HasMany(e => e.OrdenesExamen)
-                 .WithOptional()
-                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<OrdenExamen>()
-                 .HasMany(e => e.Examen)
-                 .WithOptional()
+                 .WithRequired()
                  .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Consulta>()
                 .HasMany(e => e.Recetas)
-                .WithOptional()
+                .WithRequired()
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Receta>()
-                 .HasRequired(e => e.Medicamento);
 
             modelBuilder.Entity<Empleado>()
                  .HasRequired(e => e.Clinica);
