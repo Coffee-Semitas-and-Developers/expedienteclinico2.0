@@ -17,7 +17,7 @@ namespace MedEvolution.Controllers
         // GET: Citas
         public ActionResult Index()
         {
-            return View(db.Cita.ToList().Where(x =>x.FechaCita>=DateTime.Now));
+            return View(db.Cita.ToList());
         }
 
         // GET: Citas/Details/5

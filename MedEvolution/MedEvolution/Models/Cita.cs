@@ -37,7 +37,7 @@ namespace MedEvolution.Models
         [Required]
         [DisplayName("Hora de la cita")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        public DateTime HoraCita { get; set; }
+        public string HoraCita { get; set; }
 
         [Required]
         [StringLength(100)]

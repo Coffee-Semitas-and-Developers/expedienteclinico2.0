@@ -189,24 +189,24 @@ namespace MedEvolution.Migrations
                     Resultado = c.Byte(nullable: false),
                     FechaResultado = c.DateTime(nullable: false),
                     Consulta_IdConsulta = c.Int(),
+                    Examen_CodigoExamen = c.Int(),
                 })
                 .PrimaryKey(t => t.IdOrden)
                 .ForeignKey("dbo.Consulta", t => t.Consulta_IdConsulta)
+                .ForeignKey("dbo.OrdenExamen", t => t.Examen_CodigoExamen)
+                .Index(t => t.Examen_CodigoExamen)
                 .Index(t => t.Consulta_IdConsulta);
 
-            
+
             CreateTable(
                 "dbo.Examen",
                 c => new
-                    {
-                        CodigoExamen = c.Int(nullable: false),
-                        TipoMuestra = c.String(nullable: false, maxLength: 30),
-                        NombreExamen = c.String(nullable: false, maxLength: 30),
-                        OrdenExamen_IdOrden = c.Int(),
-                    })
-                .PrimaryKey(t => t.CodigoExamen)
-                .ForeignKey("dbo.OrdenExamen", t => t.OrdenExamen_IdOrden)
-                .Index(t => t.OrdenExamen_IdOrden);
+                {
+                    CodigoExamen = c.Int(nullable: false),
+                    TipoMuestra = c.String(nullable: false, maxLength: 30),
+                    NombreExamen = c.String(nullable: false, maxLength: 30),
+                })
+                .PrimaryKey(t => t.CodigoExamen);
 
             CreateTable(
                 "dbo.Receta",
@@ -336,7 +336,7 @@ namespace MedEvolution.Migrations
                         FechaCreacion = c.DateTime(nullable: false),
                         FechaDeBaja = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.Dui)
+                .PrimaryKey(t => t.IdPaciente)
                 .ForeignKey("dbo.Persona", t => t.Dui)
                 .ForeignKey("dbo.Estado", t => t.Estado_CodigoEstado, cascadeDelete: true)
                 .Index(t => t.Dui)
@@ -351,7 +351,6 @@ namespace MedEvolution.Migrations
             DropForeignKey("dbo.Medico", "Horarios_De_Atencion_CodigoHorario", "dbo.HorarioDeAtencion");
             DropForeignKey("dbo.Medico", "Especialidad_Desempeniada_CodigoEspecialidad", "dbo.EspecialidadDesempeniada");
             DropForeignKey("dbo.Medico", "IdEmpleado", "dbo.Empleado");
-            DropForeignKey("dbo.Empleado", "Clinica_IdClinica1", "dbo.Clinica");
             DropForeignKey("dbo.Empleado", "Estado_CodigoEstado", "dbo.Estado");
             DropForeignKey("dbo.Empleado", "Clinica_IdClinica", "dbo.Clinica");
             DropForeignKey("dbo.Empleado", "Dui", "dbo.Persona");
@@ -361,16 +360,14 @@ namespace MedEvolution.Migrations
             DropForeignKey("dbo.Menu", "Rol_CodigoRol", "dbo.Rol");
             DropForeignKey("dbo.Persona", new[] { "Direccion_Colonia", "Direccion_Pasaje_calle", "Direccion_Casa" }, "dbo.Direccion");
             DropForeignKey("dbo.Consulta", "Signos_IdSignos", "dbo.ConjuntoSignosVitales");
-            DropForeignKey("dbo.Receta", "Consulta_IdConsulta1", "dbo.Consulta");
             DropForeignKey("dbo.Receta", "Medicamento_CodigoMedicamento", "dbo.Medicamento");
             DropForeignKey("dbo.Receta", "Consulta_IdConsulta", "dbo.Consulta");
-            DropForeignKey("dbo.OrdenExamen", "Consulta_IdConsulta1", "dbo.Consulta");
-            DropForeignKey("dbo.Examen", "OrdenExamen_IdOrden", "dbo.OrdenExamen");
+            DropForeignKey("dbo.OrdenExamen", "Examen_CodigoExamen", "dbo.Examen");
             DropForeignKey("dbo.OrdenExamen", "Consulta_IdConsulta", "dbo.Consulta");
             DropForeignKey("dbo.Consulta", "Cita_IdCita", "dbo.Cita");
-            DropForeignKey("dbo.Cita", "Paciente_Dui", "dbo.Paciente");
-            DropForeignKey("dbo.Cita", "Medico_Dui", "dbo.Medico");
-            DropForeignKey("dbo.Clinica", "Director_Dui", "dbo.Empleado");
+            DropForeignKey("dbo.Cita", "Paciente_IdPaciente", "dbo.Paciente");
+            DropForeignKey("dbo.Cita", "Medico_Jvpm", "dbo.Medico");
+            DropForeignKey("dbo.Clinica", "Director_IdEmpleado", "dbo.Empleado");
             DropForeignKey("dbo.Clinica", new[] { "Direccion_Colonia", "Direccion_Pasaje_calle", "Direccion_Casa" }, "dbo.Direccion");
             DropForeignKey("dbo.Direccion", "Municipio_CodigoMunicipio", "dbo.Municipio");
             DropForeignKey("dbo.Municipio", "Departamento_CodigoDepartamento", "dbo.Departamento");
@@ -379,30 +376,27 @@ namespace MedEvolution.Migrations
             DropIndex("dbo.Paciente", new[] { "Dui" });
             DropIndex("dbo.Medico", new[] { "Horarios_De_Atencion_CodigoHorario" });
             DropIndex("dbo.Medico", new[] { "Especialidad_Desempeniada_CodigoEspecialidad" });
-            DropIndex("dbo.Medico", new[] { "Dui" });
-            DropIndex("dbo.Empleado", new[] { "Clinica_IdClinica1" });
+            DropIndex("dbo.Medico", new[] { "Empleado_IdEmpleado" });
             DropIndex("dbo.Empleado", new[] { "Estado_CodigoEstado" });
             DropIndex("dbo.Empleado", new[] { "Clinica_IdClinica" });
             DropIndex("dbo.Empleado", new[] { "Dui" });
-            DropIndex("dbo.Usuario", new[] { "Empleado_Dui" });
+            DropIndex("dbo.Usuario", new[] { "Empleado_IdEmpleado" });
             DropIndex("dbo.Rol", new[] { "Usuario_CorreoElectronicoLaboral" });
             DropIndex("dbo.Privilegio", new[] { "Rol_CodigoRol" });
             DropIndex("dbo.Menu", new[] { "Rol_CodigoRol" });
-            DropIndex("dbo.Receta", new[] { "Consulta_IdConsulta1" });
             DropIndex("dbo.Receta", new[] { "Medicamento_CodigoMedicamento" });
             DropIndex("dbo.Receta", new[] { "Consulta_IdConsulta" });
-            DropIndex("dbo.Examen", new[] { "OrdenExamen_IdOrden" });
-            DropIndex("dbo.OrdenExamen", new[] { "Consulta_IdConsulta1" });
+            DropIndex("dbo.OrdenExamen", new[] { "Examen_CodigoExamen" });
             DropIndex("dbo.OrdenExamen", new[] { "Consulta_IdConsulta" });
             DropIndex("dbo.Consulta", new[] { "Signos_IdSignos" });
             DropIndex("dbo.Consulta", new[] { "Cita_IdCita" });
             DropIndex("dbo.Municipio", new[] { "Departamento_CodigoDepartamento" });
             DropIndex("dbo.Direccion", new[] { "Municipio_CodigoMunicipio" });
-            DropIndex("dbo.Clinica", new[] { "Director_Dui" });
+            DropIndex("dbo.Clinica", new[] { "Director_IdEmpleado" });
             DropIndex("dbo.Clinica", new[] { "Direccion_Colonia", "Direccion_Pasaje_calle", "Direccion_Casa" });
             DropIndex("dbo.Persona", new[] { "Direccion_Colonia", "Direccion_Pasaje_calle", "Direccion_Casa" });
-            DropIndex("dbo.Cita", new[] { "Paciente_Dui" });
-            DropIndex("dbo.Cita", new[] { "Medico_Dui" });
+            DropIndex("dbo.Cita", new[] { "Paciente_IdPaciente" });
+            DropIndex("dbo.Cita", new[] { "Medico_Jvpm" });
             DropIndex("dbo.Cita", new[] { "Estado_CodigoEstado" });
             DropTable("dbo.Paciente");
             DropTable("dbo.Medico");
