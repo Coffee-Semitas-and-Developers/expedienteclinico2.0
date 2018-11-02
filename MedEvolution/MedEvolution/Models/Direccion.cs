@@ -16,30 +16,38 @@ namespace MedEvolution.Models
         {
         }
 
+
+
         [Key]
         [Column(Order = 0)]
         [StringLength(30)]
-        [Description("Colonia:")]
+        [DisplayName("Colonia:")]
         public string Colonia { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(30)]
-        [Description("Pasaje o calle:")]
+        [DisplayName("Pasaje o calle:")]
         public string Pasaje_calle { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [StringLength(30)]
-        [Description("Casa:")]
+        [DisplayName("Casa:")]
         public string Casa { get; set; }
 
         [Required]
         [StringLength(50)]
-        [Description("Detalle:")]
+        [DisplayName("Detalle:")]
         public string Detalle { get; set; }
 
-        public Municipio Municipio { get; set; }
+        [DisplayName("Departamento:")]
+        public int codigoDepartamento { get; set; }
+        public virtual Departamento Departamento { get; set; }
+
+        [DisplayName("Municipio:")]
+        public int codigoMunicipio { get; set; }
+        public virtual Municipio Municipio { get; set; }
 
     }
 }

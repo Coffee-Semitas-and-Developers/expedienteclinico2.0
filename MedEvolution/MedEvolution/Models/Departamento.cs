@@ -16,15 +16,16 @@ namespace MedEvolution.Models
         }
 
         [Key]
-        [Description ("Código Departamento:")]
+        [DisplayName("Código Departamento:")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CodigoDepartamento { get; set; }
 
         [Required]
-        [Description("Nombre del Departamento:")]
+        [DisplayName("Nombre del Departamento:")]
         [StringLength(30)]
         public string NombreDep { get; set; }
 
-        public ICollection<Municipio> Municipios { get; set; }
+        public virtual ICollection<Municipio> Municipios { get; set; }
+        public virtual ICollection<Direccion> Direcciones { get; set; }
     }
 }

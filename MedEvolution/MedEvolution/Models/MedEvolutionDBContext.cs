@@ -13,9 +13,9 @@ namespace MedEvolution.Models
 
         }
         
-        public DbSet<Departamento> Departamento { get; set; }
-        public DbSet<Municipio> Municipio { get; set; }
-        public DbSet<Direccion> Direccion { get; set; }
+        public DbSet<Departamento> Departamentos { get; set; }
+        public DbSet<Municipio> Municipios { get; set; }
+        public DbSet<Direccion> Direcciones { get; set; }
         public DbSet<Medicamento> Medicamento { get; set; }
         public DbSet<Persona> Persona { get; set; }
         public DbSet<Paciente> Paciente { get; set; }
@@ -75,7 +75,9 @@ namespace MedEvolution.Models
                  .HasRequired(e => e.Clinica);
 
             modelBuilder.Entity<Direccion>()
-               .HasRequired(e => e.Municipio);
+               .HasRequired(e => e.Municipio)
+               .WithMany(e =>e.Direcciones)
+               .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Municipio>()
                .HasRequired(e => e.Departamento);
