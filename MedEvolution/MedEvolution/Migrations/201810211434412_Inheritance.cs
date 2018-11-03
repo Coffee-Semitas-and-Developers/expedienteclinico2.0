@@ -16,7 +16,7 @@ namespace MedEvolution.Migrations
                     FechaCita = c.DateTime(nullable: false),
                     Causa = c.String(nullable: false, maxLength: 100),
                     Estado_CodigoEstado = c.Int(nullable: false),
-                    Medico_Jvpm = c.String(nullable: false, maxLength: 10),
+                    Medico_Jvpm = c.Int(nullable: false),
                     Paciente_IdPaciente = c.String(nullable: false, maxLength: 10),
                 })
                 .PrimaryKey(t => t.IdCita)
@@ -293,7 +293,6 @@ namespace MedEvolution.Migrations
                     Dui = c.String(nullable: false, maxLength: 10),
                     Clinica_IdClinica = c.Int(nullable: false),
                     Estado_CodigoEstado = c.Int(nullable: false),
-                    Clinica_IdClinica1 = c.Int(),
                     IdEmpleado = c.Int(nullable: false),
                     Cargo = c.String(nullable: false, maxLength: 30),
                     FechaContratacion = c.DateTime(nullable: false),
