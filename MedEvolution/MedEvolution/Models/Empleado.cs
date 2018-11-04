@@ -17,12 +17,12 @@ namespace MedEvolution.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Description("Identificador de empleado:")]
+        [DisplayName("Identificador de empleado:")]
         public int IdEmpleado { get; set; }
 
         [Required]
         [StringLength(30)]
-        [Description("Cargo:")]
+        [DisplayName("Cargo:")]
         public string Cargo { get; set; }
 
         [Required]

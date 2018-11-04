@@ -10,7 +10,7 @@ namespace MedEvolution.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            //AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(MedEvolution.Models.MedEvolutionDbContext context)

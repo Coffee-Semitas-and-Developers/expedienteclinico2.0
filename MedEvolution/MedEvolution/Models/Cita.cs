@@ -28,14 +28,14 @@ namespace MedEvolution.Models
 
 
         [Required(ErrorMessage ="La Fecha no debe ser inferior a la fecha acutal")]
-        [Description("Fecha de la cita:")]
         [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "{0:dd/MMM/ yyyy}")]
         [Remote("FechaParaCita", "Validaciones", ErrorMessage ="La fecha de la cita no puede ser inferior al día de hoy")]
         [DisplayName("Fecha de Cita")]
         public DateTime FechaCita { get; set; }
 
         [Required]
-        [DisplayName("Hora de la cita")]
+        [Column("HoraCita")]
+        [DisplayName("Hora de la cita:")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         public string HoraCita { get; set; }
 

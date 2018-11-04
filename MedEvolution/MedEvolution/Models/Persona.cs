@@ -17,8 +17,9 @@ namespace MedEvolution.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [StringLength(10)]
-        [Description("Dui:")]
+        [DisplayName("Dui:")]
         public string Dui { get; set; }
 
         [Required]

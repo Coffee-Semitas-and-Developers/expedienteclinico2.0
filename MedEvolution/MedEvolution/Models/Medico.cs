@@ -16,6 +16,7 @@ namespace MedEvolution.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DisplayName("JVPM:")]
         public int Jvpm { get; set; }
 

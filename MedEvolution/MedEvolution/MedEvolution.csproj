@@ -155,9 +155,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810211434412_Inheritance.cs" />
-    <Compile Include="Migrations\201810211434412_Inheritance.Designer.cs">
-      <DependentUpon>201810211434412_Inheritance.cs</DependentUpon>
+    <Compile Include="Migrations\201811032324554_Inheritance.cs" />
+    <Compile Include="Migrations\201811032324554_Inheritance.Designer.cs">
+      <DependentUpon>201811032324554_Inheritance.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cita.cs" />
@@ -280,12 +280,12 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810211434412_Inheritance.resx">
-      <DependentUpon>201810211434412_Inheritance.cs</DependentUpon>
-    </EmbeddedResource>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
+    <EmbeddedResource Include="Migrations\201811032324554_Inheritance.resx">
+      <DependentUpon>201811032324554_Inheritance.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

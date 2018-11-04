@@ -17,6 +17,9 @@ namespace MedEvolution.Controllers
         // GET: Citas
         public ActionResult Index()
         {
+            /*var citas = db.Cita.Include(e =>e.Medico);
+            return View(citas.ToList());*/
+
             return View(db.Cita.ToList());
         }
 
