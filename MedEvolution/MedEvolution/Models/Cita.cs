@@ -18,7 +18,7 @@ namespace MedEvolution.Models
         }
 
         [Key]
-        [Description("Identificador de cita:")]
+        [DisplayName("Id")]
         public int IdCita { get; set; }
        
         [Required]
@@ -28,14 +28,20 @@ namespace MedEvolution.Models
 
 
         [Required(ErrorMessage ="La Fecha no debe ser inferior a la fecha acutal")]
-        [Description("Fecha de la cita:")]
         [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "{0:dd/MMM/ yyyy}")]
         [Remote("FechaParaCita", "Validaciones", ErrorMessage ="La fecha de la cita no puede ser inferior al día de hoy")]
+        [DisplayName("Fecha de Cita")]
         public DateTime FechaCita { get; set; }
 
         [Required]
+        [Column("HoraCita")]
+        [DisplayName("Hora de la cita:")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        public string HoraCita { get; set; }
+
+        [Required]
         [StringLength(100)]
-        [Description("Causa:")]
+        [DisplayName("Causa")]
         public string Causa { get; set; }
 
         //[Remote("ObteberListadoMedico","FiltrosController")]

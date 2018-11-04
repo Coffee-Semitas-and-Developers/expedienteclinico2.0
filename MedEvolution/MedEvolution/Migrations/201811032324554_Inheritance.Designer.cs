@@ -13,7 +13,7 @@ namespace MedEvolution.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201810211434412_Inheritance"; }
+            get { return "201811032324554_Inheritance"; }
         }
         
         string IMigrationMetadata.Source

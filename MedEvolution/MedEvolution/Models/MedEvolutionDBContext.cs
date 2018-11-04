@@ -114,6 +114,14 @@ namespace MedEvolution.Models
                  .WithOptional()
                  .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Empleado>()
+                .HasKey(e => e.IdEmpleado);
+
+            modelBuilder.Entity<Medico>()
+                .HasKey(e => e.Jvpm);
+
+            modelBuilder.Entity<Paciente>()
+                .HasKey(e => e.IdPaciente);
         }
 
     }

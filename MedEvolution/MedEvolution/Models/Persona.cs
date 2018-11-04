@@ -13,11 +13,13 @@ namespace MedEvolution.Models
     {
         public Persona()
         {
+            Nombre = Nombre1 + Apellido1;
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [StringLength(10)]
-        [Description("Dui:")]
+        [DisplayName("Dui:")]
         public string Dui { get; set; }
 
         [Required]
@@ -139,6 +141,11 @@ namespace MedEvolution.Models
         [NotMapped]
         [ScaffoldColumn(false)]
         public int Edad { get; set; }
+
+        //String para crear una sola linea de del nombre: Nombre1+Apellido1
+        [NotMapped]
+        [Description("Nombre :")]
+        public string Nombre { get; set; }
 
         /*public static int CalcularEdad(DateTime FechaNac)
         {

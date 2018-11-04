@@ -16,7 +16,8 @@ namespace MedEvolution.Models
         }
 
         [Key]
-        [Description("JVPM:")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DisplayName("JVPM:")]
         public int Jvpm { get; set; }
 
         public  Especialidad_Desempeniada Especialidad_Desempeniada { get; set; }
